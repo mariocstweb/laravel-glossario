@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Guest\HomeController as GuestHomeController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\Admin\WordController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +20,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', GuestHomeController::class)->name('guest.home');
 
-Route::get('/admin', AdminHomeController::class)->middleware(['auth', 'verified'])->name('admin.home');
+// Route::prefix('/admin', AdminHomeController::class)->middleware(['auth', 'verified'])->name('admin.home');
+Route::prefix('/admin')->middleware(['auth'])->name('admin.')->group(function () {
+    Route::get('', AdminHomeController::class)->name('home');
+    Route::resource('words', WordController::class);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
