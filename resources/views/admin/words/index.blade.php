@@ -1,6 +1,12 @@
 
 @extends('layouts.app')
  @section('content')
+ <div class="d-flex justify-content-end gap-2 p-2">
+  <a href="{{route('admin.words.trash')}}" class="btn btn-info">Vedi Cestino</a>
+  <a href="{{route('admin.words.create')}}" class="btn btn-success"><i class="fa-solid fa-plus"></i>
+  Aggiungi progetto
+  </a>
+</div>
  <table class="table">
   <thead>
     <tr>
