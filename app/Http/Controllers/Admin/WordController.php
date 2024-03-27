@@ -6,6 +6,12 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Word;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreWordRequest;
+use App\Http\Requests\UpdateWordRequest;
+use App\Models\Link;
+use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
+use Stringable;
 
 class WordController extends Controller
 {
@@ -23,15 +29,30 @@ class WordController extends Controller
      */
     public function create(Word $word)
     {
-        return view('admin.words.create', compact('word'));
+        $links = Link::select('title', 'id')->get();
+        return view('admin.words.create', compact('word', 'links'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreWordRequest $request)
     {
-        return view('admin.words.show', compact('word'));
+        $data = $request->validated();
+
+        $new_word = new Word();
+
+        $new_word->fill($data);
+
+        $new_word->slug = Str::slug($new_word->title);
+
+        $new_word->save();
+
+        if (Arr::exists($data, 'links')) {
+            $new_word->links()->attach($data['links']);
+        }
+
+        return redirect()->route('admin.words.show', $new_word->id);
     }
 
     /**
@@ -48,13 +69,14 @@ class WordController extends Controller
      */
     public function edit(Word $word)
     {
-        return view('admin.words.edit', compact('word'));
+        $links = Link::select('title', 'id')->get();
+        return view('admin.words.edit', compact('word', 'links'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Word $word)
+    public function update(UpdateWordRequest $request, Word $word)
     {
         return view('admin.words.show', compact('word'));
     }

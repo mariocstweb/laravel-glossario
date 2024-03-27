@@ -57,21 +57,21 @@
         </textarea>
     </div>
 
-    <div class="input-group mb-3 w-100 p-1 d-flex">
-        <div class="w-100">
-            <label class="form-label label" for="url">Url</label>
+    <div class="input-group mb-3 w-50 p-1 d-flex">
+        <label class="form-label label">Links</label>
+        <div class="form-group @error('links') is-invalid @enderror">
+            @foreach ($links as $link)
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="link_{{$link->id}}" 
+                name="links[]" value="{{$link->id}}" @if (in_array($link->id, old('links', $old_links ?? []))) checked @endif>
+                <label class="form-check-label" for="tech_{{$link->id}}">{{$link->title}}</label>
+            </div>
+            @endforeach
         </div>
-        <input type="text" required id="url" name="url" class="form-control @error('url') is-invalid @elseif(old('url')) is-valid @enderror" 
-        value="{{old('url', $word->url)}}" 
-        placeholder="Inserisci url...">
-        @error('url')
+        @error('links')
         <div class="invalid-feedback">
             {{$message}}
-        </div>   
-        @else        
-        <div class="valid-feedback">
-            Campo corretto
-        </div>      
+        </div>       
         @enderror       
     </div>
 
@@ -81,7 +81,6 @@
     </div>
 
     </form>
-
+    
+    @include('admin.form.slug')
 @endsection
-
-@include('admin.form.slug')
