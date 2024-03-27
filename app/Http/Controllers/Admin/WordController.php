@@ -21,9 +21,9 @@ class WordController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Word $word)
     {
-        //
+        return view('admin.form.form', compact('word'));
     }
 
     /**
@@ -48,7 +48,7 @@ class WordController extends Controller
      */
     public function edit(Word $word)
     {
-        //
+        return view('admin.form.form', compact('word'));
     }
 
     /**
