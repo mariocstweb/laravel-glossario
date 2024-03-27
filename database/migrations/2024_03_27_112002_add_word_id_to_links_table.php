@@ -25,6 +25,7 @@ return new class extends Migration
     {
         Schema::table('links', function (Blueprint $table) {
             $table->dropForeignIdFor(Word::class);
+            $table->dropColumn('word_id');
             //
         });
     }

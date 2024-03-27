@@ -34,8 +34,11 @@ class LinkSeeder extends Seeder
 
             $new_link->save();
 
-            $link_words = array_filter($words_ids, fn () => rand(0, 1));
-            $new_link->words()->attach($link_words);
+            $link_words = [];
+            foreach ($words_ids as $word_id) {
+                if (rand(0, 1)) $link_words[] = $word_id;
+            }
+            $new_link->links()->attach($link_words);
         }
     }
 }
