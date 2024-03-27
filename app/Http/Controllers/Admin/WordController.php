@@ -12,9 +12,10 @@ class WordController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Word $word)
     {
-        return view('admin.words.index');
+        $words = Word::all();
+        return view('admin.words.index', compact('words'));
     }
 
     /**
