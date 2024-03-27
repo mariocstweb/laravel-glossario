@@ -23,7 +23,7 @@ class WordController extends Controller
      */
     public function create(Word $word)
     {
-        return view('admin.form.form', compact('word'));
+        return view('admin.words.create', compact('word'));
     }
 
     /**
@@ -31,7 +31,7 @@ class WordController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('admin.words.show', compact('word'));
     }
 
     /**
@@ -48,7 +48,7 @@ class WordController extends Controller
      */
     public function edit(Word $word)
     {
-        return view('admin.form.form', compact('word'));
+        return view('admin.words.edit', compact('word'));
     }
 
     /**
