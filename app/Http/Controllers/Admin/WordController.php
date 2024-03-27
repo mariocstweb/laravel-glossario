@@ -56,7 +56,7 @@ class WordController extends Controller
      */
     public function update(Request $request, Word $word)
     {
-        //
+        return view('admin.words.show', compact('word'));
     }
 
     /**
