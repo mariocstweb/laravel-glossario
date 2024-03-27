@@ -152,3 +152,5 @@
 </form>
 
 @endsection
+
+@include('admin.form.slug')
