@@ -89,4 +89,22 @@ class WordController extends Controller
         $word->delete();
         return to_route('admin.words.index');
     }
+
+    public function trash()
+    {
+        $words = Word::onlyTrashed()->get();
+        return view('admin.words.trash', compact('words'));
+    }
+
+    public function restore(Word $word)
+    {
+        $word->restore();
+        return to_route('admin.words.index', $word->id);
+    }
+
+    public function drop(Word $word)
+    {
+        $word->forceDelete();
+        return to_route('admin.words.trash');
+    }
 }

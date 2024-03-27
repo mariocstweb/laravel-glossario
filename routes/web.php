@@ -26,9 +26,9 @@ Route::prefix('/admin')->middleware(['auth'])->name('admin.')->group(function ()
     // Rotta per spostare un progetto nel cestino
     Route::get('/words/trash', [WordController::class, 'trash'])->name('words.trash');
     // Rotta per il restore di un progetto
-    Route::patch('/words/{project}/restore', [WordController::class, 'restore'])->name('words.restore')->withTrashed();
+    Route::patch('/words/{word}/restore', [WordController::class, 'restore'])->name('words.restore')->withTrashed();
     // Rotta per eliminare un progetto definitivamente
-    Route::delete('/words/{project}/drop', [WordController::class, 'drop'])->name('words.drop')->withTrashed();
+    Route::delete('/words/{word}/drop', [WordController::class, 'drop'])->name('words.drop')->withTrashed();
     Route::resource('words', WordController::class);
 });
 
