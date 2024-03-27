@@ -65,7 +65,9 @@ class WordController extends Controller
     public function destroy(Word $word)
     {
         $word->delete();
-        return to_route('admin.words.index');
+        return to_route('admin.words.index')
+            ->with('type', 'danger')
+            ->with('message', 'Hai spostato la parola nel cestino');;
     }
 
     public function trash()
@@ -77,12 +79,16 @@ class WordController extends Controller
     public function restore(Word $word)
     {
         $word->restore();
-        return to_route('admin.words.index', $word->id);
+        return to_route('admin.words.index', $word->id)
+            ->with('type', 'success')
+            ->with('message', "Parola {$word->title} ripristinata con successo");
     }
 
     public function drop(Word $word)
     {
         $word->forceDelete();
-        return to_route('admin.words.trash');
+        return to_route('admin.words.trash')
+            ->with('type', 'danger')
+            ->with('message', "Parola {$word->title} eliminata definitivamente");
     }
 }
