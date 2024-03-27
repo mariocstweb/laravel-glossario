@@ -23,11 +23,9 @@
     <div id="app">
         {{-- navbar --}}
     @include('layouts.includes.navbar')
-
-
-        <main class="container">
-            @yield('content')
-        </main>
+    <main class="container">
+        @yield('content')
+    </main>
     </div>
 </body>
 

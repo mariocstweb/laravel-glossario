@@ -14,7 +14,7 @@ class WordController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.words.index');
     }
 
     /**
