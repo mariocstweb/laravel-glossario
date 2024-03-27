@@ -11,4 +11,9 @@ class Word extends Model
     use HasFactory;
     use SoftDeletes;
     protected $fillable = ['title', 'description', 'slug',];
+
+    public function links()
+    {
+        return $this->hasMany(Link::class);
+    }
 }
