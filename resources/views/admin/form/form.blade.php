@@ -44,7 +44,7 @@
             </div>
             <input type="text" id="slug" name="slug" class="form-control" 
             value="{{$word->slug}}" 
-            disabled>    
+            readonly>    
         </div>
     </div>
 

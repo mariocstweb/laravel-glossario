@@ -83,8 +83,24 @@ class WordController extends Controller
      */
     public function update(UpdateWordRequest $request, Word $word)
     {
+        $data = $request->validated();
 
-        return view('admin.words.show', compact('word'));
+        $word->slug = $data['slug'];
+
+        if (Arr::exists($data, 'links')) {
+
+            foreach ($data['links'] as $link_id) {
+                $link = Link::findOrFail($link_id);
+                $link->word_id = $word->id;
+                $link->save();
+            }
+        }
+
+        $word->update($data);
+
+        return redirect()->route('admin.words.show', $word)
+            ->with('Link', 'success')
+            ->with('message', "$word->title modificato con successo.");
     }
 
     /**
