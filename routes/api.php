@@ -21,4 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('/words', GlossarioController::class);
 
-Route::get('/projects/{slug}', [GlossarioController::class, 'show']);
+//Route::get('/words/{slug}', [GlossarioController::class, 'show']);
