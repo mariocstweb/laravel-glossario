@@ -77,15 +77,15 @@
 
     <div class="input-group mb-3 w-50 p-1 d-flex">
         <label class="form-label label" for="tags">Tags</label>
-        <select required id="tags" name="tags[]"  
-            class="form-select">
-            <option value="">Scegli tags</option>
+        <div  class="form-group @error('tags') is-invalid @enderror">
             @foreach ($tags as $tag)
-                <option value="{{$tag->id}}" @if (old('tag_id', $word->tag?->id) == $tag->id) selected @endif>
-                    {{$tag->title}}
-                </option>
-                @endforeach
-            </select>    
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="tag_{{$link->id}}" 
+                name="tags[]" value="{{$tag->id}}" @if (in_array($tag->id, old('tags', $prev_tags ?? []))) checked @endif>
+                <label class="form-check-label" for="tag_{{$tag->id}}">{{$tag->title}}</label>
+            </div>
+            @endforeach 
+        </div>
         @error('tag_id')
         <div class="invalid-feedback">
             {{$message}}

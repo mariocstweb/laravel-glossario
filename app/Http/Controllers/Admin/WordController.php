@@ -150,6 +150,9 @@ class WordController extends Controller
     public function drop(Word $word)
     {
         $word->forceDelete();
+
+        if ($word->has('tags')) $word->tags()->detach();
+
         return to_route('admin.words.trash')
             ->with('type', 'danger')
             ->with('message', "Parola {$word->title} eliminata definitivamente");
