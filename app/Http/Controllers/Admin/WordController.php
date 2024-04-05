@@ -38,7 +38,7 @@ class WordController extends Controller
      */
     public function store(StoreWordRequest $request)
     {
-        $data = $request->validate();
+        $data = $request->validated();
 
         $new_word = new Word();
 
