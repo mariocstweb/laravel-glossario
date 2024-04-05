@@ -29,6 +29,7 @@ class UpdateWordRequest extends FormRequest
             'slug' => 'string',
             'description' => 'string|required',
             'links' => 'nullable|exists:links,id',
+            'tags' => 'nullable|array|exists:tags,id',
         ];
     }
     public function messages(): array
@@ -37,6 +38,7 @@ class UpdateWordRequest extends FormRequest
             'title.required' => 'Il campo titolo è obbligatorio',
             'description.required' => 'Il campo decsrizione è obbligatorio',
             'links.exists' => 'Link errato/i',
+            'tags.exists' => 'tag errato/i',
         ];
     }
 }
