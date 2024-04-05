@@ -15,6 +15,7 @@
       <th scope="col">Descrizione</th>
       <th scope="col">Slug</th>
       <th scope="col">Links</th>
+      <th scope="col">Tag</th>
       <th scope="col">Data creazione</th>
       <th scope="col">Ultima modifica</th>
       <th scope="col"></th>
@@ -33,6 +34,15 @@
             <a href="{{ $link->url }}">{{ $link->title }}</a>
           @empty
             <span>Nessun link</span>
+          @endforelse
+          </div>
+        </td>
+        <td>
+          <div class="d-flex flex-column text-center">
+            @forelse ($word->tags as $tag)
+            <span class="badge" style="color:{{$tag->color}}">{{$tag->title}}</span>
+          @empty
+            <span>Nessun tag</span>
           @endforelse
           </div>
         </td>
