@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Tag;
+use App\Models\Word;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -23,6 +25,7 @@ class WordFactory extends Factory
             'title' => $title,
             'slug' => Str::slug($title),
             'description' => fake()->paragraph(),
+
         ];
     }
 }

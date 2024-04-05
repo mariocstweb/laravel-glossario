@@ -37,6 +37,10 @@ class TagSeeder extends Seeder
             $new_tag->word_id = Arr::random($word_ids);
 
             $new_tag->save();
+
+            $tag_words = array_filter($word_ids, fn () => rand(0, 1));
+
+            $new_tag->words()->attach($tag_words);
         }
     }
 }
