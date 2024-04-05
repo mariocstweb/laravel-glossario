@@ -64,7 +64,7 @@
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" id="link_{{$link->id}}" 
                 name="links[]" value="{{$link->id}}" @if (in_array($link->id, old('links', []))) checked @endif>
-                <label class="form-check-label" for="tech_{{$link->id}}">{{$link->title}}</label>
+                <label class="form-check-label" for="link_{{$link->id}}">{{$link->title}}</label>
             </div>
             @endforeach
         </div>
