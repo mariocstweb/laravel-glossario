@@ -76,13 +76,13 @@
     </div>
 
     <div class="input-group mb-3 w-50 p-1 d-flex">
-        <label class="form-label label" for="tag_id">Tags</label>
-        <select required id="tag_id" name="tag_id"  
+        <label class="form-label label" for="tags">Tags</label>
+        <select required id="tags" name="tags[]"  
             class="form-select">
             <option value="">Scegli tags</option>
             @foreach ($tags as $tag)
                 <option value="{{$tag->id}}" @if (old('tag_id', $word->tag?->id) == $tag->id) selected @endif>
-                    {{$tag->label}}
+                    {{$tag->title}}
                 </option>
                 @endforeach
             </select>    

@@ -32,7 +32,6 @@ class WordController extends Controller
     {
         $links = Link::select('title', 'id')->get();
         $tags = Tag::all();
-
         return view('admin.words.create', compact('word', 'links', 'tags'));
     }
 
@@ -60,6 +59,10 @@ class WordController extends Controller
             }
         }
 
+        if (Arr::exists($data, 'tags')) {
+            $new_word->technologies()->attach($data['tags']);
+        }
+
         return redirect()->route('admin.words.show', $new_word->id)
             ->with('Link', 'success')
             ->with('message', "$new_word->title caricato con successo.");
@@ -80,8 +83,9 @@ class WordController extends Controller
     public function edit(Word $word)
     {
         $links = Link::select('title', 'id')->get();
+        $tags = Tag::all();
         $prev_links = $word->links->pluck('id')->toArray();
-        return view('admin.words.edit', compact('word', 'links', 'prev_links'));
+        return view('admin.words.edit', compact('word', 'links', 'prev_links', 'tags'));
     }
 
     /**
@@ -106,6 +110,12 @@ class WordController extends Controller
         }
 
         $word->update($data);
+
+        if (Arr::exists($data, 'tags')) {
+            $word->tags()->sync($data['tags']);
+        } elseif (!Arr::exists($data, 'tags') && $word->has('tags')) {
+            $word->tags()->detach();
+        }
 
         return redirect()->route('admin.words.show', $word)
             ->with('Link', 'success')
