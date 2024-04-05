@@ -60,7 +60,7 @@ class WordController extends Controller
         }
 
         if (Arr::exists($data, 'tags')) {
-            $new_word->technologies()->attach($data['tags']);
+            $new_word->tags()->attach($data['tags']);
         }
 
         return redirect()->route('admin.words.show', $new_word->id)
@@ -94,7 +94,6 @@ class WordController extends Controller
     public function update(UpdateWordRequest $request, Word $word)
     {
         $data = $request->validated();
-
         $word->slug = $data['slug'];
 
         // Rimuovo la relazione tra parola i Link 

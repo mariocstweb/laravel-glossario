@@ -76,11 +76,11 @@
     </div>
 
     <div class="input-group mb-3 w-50 p-1 d-flex">
-        <label class="form-label label" for="tags">Tags</label>
-        <div  class="form-group @error('tags') is-invalid @enderror">
+        <label class="form-label label">Tags</label>
+        <div class="form-group @error('tags') is-invalid @enderror">
             @foreach ($tags as $tag)
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="tag_{{$link->id}}" 
+                <input class="form-check-input" type="checkbox" id="tag_{{$tag->id}}" 
                 name="tags[]" value="{{$tag->id}}" @if (in_array($tag->id, old('tags', $prev_tags ?? []))) checked @endif>
                 <label class="form-check-label" for="tag_{{$tag->id}}">{{$tag->title}}</label>
             </div>
