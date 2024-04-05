@@ -75,7 +75,8 @@ class WordController extends Controller
     public function edit(Word $word)
     {
         $links = Link::select('title', 'id')->get();
-        return view('admin.words.edit', compact('word', 'links'));
+        $prev_links = $word->links->pluck('id')->toArray();
+        return view('admin.words.edit', compact('word', 'links', 'prev_links'));
     }
 
     /**
@@ -87,8 +88,11 @@ class WordController extends Controller
 
         $word->slug = $data['slug'];
 
-        if (Arr::exists($data, 'links')) {
+        // Rimuovo la relazione tra parola i Link 
+        Link::where('word_id', $word->id)->update(['word_id' => null]);
 
+        // controllo la modifica ed aggiungo i link selezionati 
+        if (Arr::exists($data, 'links')) {
             foreach ($data['links'] as $link_id) {
                 $link = Link::findOrFail($link_id);
                 $link->word_id = $word->id;
