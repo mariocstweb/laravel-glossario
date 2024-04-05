@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\WordController;
+use App\Http\Controllers\Api\GlossarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('/words', WordController::class);
+Route::apiResource('/words', GlossarioController::class);
 
-// Route::get('/projects/{slug}', [ProjectController::class, 'show']);
+Route::get('/projects/{slug}', [GlossarioController::class, 'show']);
