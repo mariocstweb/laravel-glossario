@@ -29,7 +29,7 @@ Route::prefix('/admin')->middleware(['auth'])->name('admin.')->group(function ()
     Route::patch('/words/{word}/restore', [WordController::class, 'restore'])->name('words.restore')->withTrashed();
     // Rotta per eliminare un progetto definitivamente
     Route::delete('/words/{word}/drop', [WordController::class, 'drop'])->name('words.drop')->withTrashed();
-    Route::resource('words', WordController::class);
+    Route::resource('words', WordController::class)->withTrashed(['show', 'edit', 'update']);
 });
 
 Route::middleware('auth')->group(function () {
