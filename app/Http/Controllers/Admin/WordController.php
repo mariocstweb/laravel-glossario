@@ -85,7 +85,8 @@ class WordController extends Controller
         $links = Link::select('title', 'id')->get();
         $tags = Tag::all();
         $prev_links = $word->links->pluck('id')->toArray();
-        return view('admin.words.edit', compact('word', 'links', 'prev_links', 'tags'));
+        $prev_tags = $word->tags->pluck('id')->toArray();
+        return view('admin.words.edit', compact('word', 'links', 'prev_links', 'tags', 'prev_tags'));
     }
 
     /**
