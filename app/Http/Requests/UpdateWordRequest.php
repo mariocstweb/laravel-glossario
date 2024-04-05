@@ -25,7 +25,7 @@ class UpdateWordRequest extends FormRequest
         $id = $this->route('word');
 
         return [
-            'title' => ['required', 'string', Rule::unique('word')->ignore($id)],
+            'title' => ['required', 'string', Rule::unique('words')->ignore($id)],
             'slug' => 'string',
             'description' => 'string|required',
             'links' => 'nullable|exists:links,id',

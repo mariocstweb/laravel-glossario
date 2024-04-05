@@ -38,7 +38,7 @@ class WordController extends Controller
      */
     public function store(StoreWordRequest $request)
     {
-        $data = $request->validated();
+        $data = $request->validate();
 
         $new_word = new Word();
 
@@ -49,7 +49,12 @@ class WordController extends Controller
         $new_word->save();
 
         if (Arr::exists($data, 'links')) {
-            $new_word->links()->attach($data['links']);
+
+            foreach ($data['links'] as $link_id) {
+                $link = Link::findOrFail($link_id);
+                $link->word_id = $new_word->id;
+                $link->save();
+            }
         }
 
         return redirect()->route('admin.words.show', $new_word->id);
@@ -78,6 +83,7 @@ class WordController extends Controller
      */
     public function update(UpdateWordRequest $request, Word $word)
     {
+
         return view('admin.words.show', compact('word'));
     }
 
