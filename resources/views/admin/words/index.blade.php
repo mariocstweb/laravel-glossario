@@ -61,7 +61,8 @@
             </a>
 
             {{--# DESTROY --}}
-            <form action="{{ route('admin.words.destroy', $word->id) }}" method="POST" id="delete-form">
+            <form action="{{ route('admin.words.destroy', $word->id) }}" 
+              method="POST" class="delete-form" data-word="{{$word->title}}">
               @csrf
               @method('DELETE')
               <button class="btn btn-sm btn-danger"><i class="far fa-trash-can"></i></button>
@@ -76,3 +77,20 @@
   </tbody>
 </table> 
  @endsection
+
+ {{--Scripts--}}
+@section('scripts')
+<script>
+    const formsDelete= document.querySelectorAll('.delete-form');
+    formsDelete.forEach(form => {
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const word = form.dataset.word;
+            const confirmation = confirm(`Sei sicuro di voler eliminare il projetto ${word}?`);
+            if(confirmation) form.submit();
+        })
+    });
+
+</script>
+
+@endsection

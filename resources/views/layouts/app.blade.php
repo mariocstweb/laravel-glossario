@@ -31,7 +31,8 @@
         @yield('content')
     </main>
     </div>
-    
+    {{--Scripts--}}
+    @yield('scripts')
 </body>
 
 </html>
