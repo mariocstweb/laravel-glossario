@@ -114,7 +114,7 @@ class WordController extends Controller
         if(Arr::exists($data, 'tags')){
             $word->tags()->sync($data['tags']);
         } elseif(!Arr::exists($data, 'tags') && count($word->tags)){
-            $word->technologies()->detach();
+            $word->tags()->detach();
         }
 
         return redirect()->route('admin.words.show', $word)
