@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreWordRequest;
 use App\Http\Requests\UpdateWordRequest;
 use App\Models\Link;
+use App\Models\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 use Stringable;
@@ -27,10 +28,12 @@ class WordController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Word $word)
+    public function create(Word $word, Tag $tag)
     {
         $links = Link::select('title', 'id')->get();
-        return view('admin.words.create', compact('word', 'links'));
+        $tags = Tag::all();
+
+        return view('admin.words.create', compact('word', 'links', 'tags'));
     }
 
     /**

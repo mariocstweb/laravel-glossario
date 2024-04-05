@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Tag;
+use App\Models\Word;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
 
 class TagSeeder extends Seeder
 {
@@ -13,6 +15,7 @@ class TagSeeder extends Seeder
      */
     public function run(): void
     {
+        $word_ids = Word::pluck('id')->toArray();
         $tags = [
             ['title' => 'HTML', 'color' => '#DC3545'],
             ['title' => 'CSS', 'color' => '#0D6EFD'],
@@ -30,6 +33,8 @@ class TagSeeder extends Seeder
             $new_tag = new Tag();
             $new_tag->title = $tag['title'];
             $new_tag->color = $tag['color'];
+
+            $new_tag->word_id = Arr::random($word_ids);
 
             $new_tag->save();
         }
