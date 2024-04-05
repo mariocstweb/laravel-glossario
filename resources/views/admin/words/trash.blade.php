@@ -39,9 +39,10 @@
               <td>
                 <div class="d-flex gap-2 justify-content-end">
                   {{--# SHOW --}}
-                  <a href="{{ route('admin.words.show', $word->id)}}" class="btn btn-sm btn-primary">
+                  
+                  {{-- <a href="{{ route('admin.words.show', $word->id)}}" class="btn btn-sm btn-primary">
                     <i class="far fa-eye"></i>
-                  </a>
+                  </a> --}}
       
                   {{--# RESTORE --}}
                   <form action="{{route('admin.words.restore', $word->id)}}" method="POST">

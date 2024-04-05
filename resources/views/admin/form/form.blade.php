@@ -7,8 +7,10 @@
         @else Modifica {{$word->title}} @endif 
     </h1>
 
+     {{-- banner validazione del form  --}}
     @include('admin.form.validation')
 
+    {{-- Impostazioni del form --}}
         @if ($word->exists)
     <form action="{{route('admin.words.update', $word->id  ) }}" method="post" 
         class="flex container py-4 justify-content-center">
@@ -24,6 +26,7 @@
             <div class="w-100">
                 <label class="form-label label" for="title">Titolo</label>
             </div>
+            {{-- FORM - TITOLO --}}
             <input type="text" required id="title" name="title" class="form-control @error('title') is-invalid @elseif(old('title')) is-valid @enderror" 
             value="{{old('title', $word->title)}}" 
             placeholder="Inserisci titolo...">
@@ -38,6 +41,7 @@
             @enderror       
         </div>
     
+        {{-- FORM - SLUG --}}
         <div class="input-group mb-3 w-50 p-1 d-flex">
             <div class="w-100">
                 <label class="form-label label" for="slug">Slug</label>
@@ -48,6 +52,7 @@
         </div>
     </div>
 
+    {{-- FORM - DESCRIPTION --}}
     <div class="input-group mb-3 w-100 p-1">
         <label class="form-label label" for="description">Descrizione</label>
         <textarea id="description" name="description" id="description" cols="50" rows="3" 
@@ -57,6 +62,7 @@
         </textarea>
     </div>
 
+    {{-- FORM - LINKS --}}
     <div class="input-group mb-3 w-50 p-1 d-flex">
         <label class="form-label label">Links</label>
         <div class="form-group @error('links') is-invalid @enderror">
@@ -75,6 +81,7 @@
         @enderror       
     </div>
 
+    {{-- FORM - TAGS --}}
     <div class="input-group mb-3 w-50 p-1 d-flex">
         <label class="form-label label">Tags</label>
         <div class="form-group @error('tags') is-invalid @enderror">
