@@ -74,7 +74,14 @@
         </div>       
         @enderror       
     </div>
-
+    
+    <label for="tags">Inserisci i tag</label>
+    <select class="form-select" aria-label="Default select example" id="tags" name="tags[]">
+        <option>Nessun tag</option>
+        @foreach ($tags as $tag)
+            <option value="{{$tag->id}}" @if(old('tags_id', $word->tag?->id) == $tag->id) selected @endif>{{$tag->title}}</option>      
+        @endforeach
+    </select>
     <div class="w-100 pt-4">
         <button type="submit" class="btn btn-success me-3">Salva</button>
         <button type="reset" class="btn btn-danger">Svuota</button>

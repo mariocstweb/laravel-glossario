@@ -59,7 +59,10 @@ class WordController extends Controller
                 $link->save();
             }
         }
-
+        
+        if(Arr::exists($data, 'tech')){
+            $project->technologies()->attach($data['tech']);
+        }
         return redirect()->route('admin.words.show', $new_word->id)
             ->with('Link', 'success')
             ->with('message', "$new_word->title caricato con successo.");
@@ -79,9 +82,10 @@ class WordController extends Controller
      */
     public function edit(Word $word)
     {
+        $tags = Tag::all();
         $links = Link::select('title', 'id')->get();
         $prev_links = $word->links->pluck('id')->toArray();
-        return view('admin.words.edit', compact('word', 'links', 'prev_links'));
+        return view('admin.words.edit', compact('word', 'links', 'prev_links', 'tags'));
     }
 
     /**
@@ -106,6 +110,12 @@ class WordController extends Controller
         }
 
         $word->update($data);
+
+        if(Arr::exists($data, 'tags')){
+            $word->tags()->sync($data['tags']);
+        } elseif(!Arr::exists($data, 'tags') && count($word->tags)){
+            $word->technologies()->detach();
+        }
 
         return redirect()->route('admin.words.show', $word)
             ->with('Link', 'success')
