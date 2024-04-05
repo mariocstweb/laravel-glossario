@@ -60,7 +60,9 @@ class WordController extends Controller
             }
         }
 
-        return redirect()->route('admin.words.show', $new_word->id);
+        return redirect()->route('admin.words.show', $new_word->id)
+            ->with('Link', 'success')
+            ->with('message', "$new_word->title caricato con successo.");
     }
 
     /**
