@@ -34,7 +34,7 @@ class TagSeeder extends Seeder
             $new_tag->title = $tag['title'];
             $new_tag->color = $tag['color'];
 
-            $new_tag->word_id = Arr::random($word_ids);
+            // $new_tag->word_id = Arr::random($word_ids);
 
             $new_tag->save();
 

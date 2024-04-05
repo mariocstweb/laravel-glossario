@@ -23,6 +23,6 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call(LinkSeeder::class);
 
-        // $this->call(TagSeeder::class);
+        $this->call(TagSeeder::class);
     }
 }
