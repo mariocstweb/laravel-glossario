@@ -15,4 +15,13 @@ class GlossarioController extends Controller
 
         return response()->json($words);
     }
+
+    public function show(string $slug)
+    {
+        $word = Word::with('tags', 'links')->whereSlug($slug)->get();
+
+        if (!$word) return response(null, 404);
+
+        return response()->json($word);
+    }
 }
