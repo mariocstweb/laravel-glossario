@@ -13,10 +13,10 @@
           <!-- Left Side Of Navbar -->
           <ul class="navbar-nav me-auto">
               <li class="nav-item">
-                  <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
+                  <a class="nav-link text-uppercase fw-bold text-dark" href="{{url('/') }}">{{ __('Home') }}</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="{{route('admin.words.index') }}">{{ __('Glossario') }}</a>
+                  <a class="nav-link text-uppercase fw-bold text-dark" href="{{route('admin.words.index') }}">{{ __('Glossario') }}</a>
               </li>
           </ul>
 
@@ -25,16 +25,16 @@
               <!-- Authentication Links -->
               @guest
               <li class="nav-item">
-                  <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                  <a class="nav-link fw-bold text-uppercase text-dark" href="{{ route('login') }}">{{ __('Login') }}</a>
               </li>
               @if (Route::has('register'))
               <li class="nav-item">
-                  <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                  <a class="nav-link fw-bold text-uppercase text-dark" href="{{ route('register') }}">{{ __('Register') }}</a>
               </li>
               @endif
               @else
               <li class="nav-item dropdown">
-                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                  <a id="navbarDropdown" class="nav-link dropdown-toggle text-dark fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                       {{ Auth::user()->name }}
                   </a>
 

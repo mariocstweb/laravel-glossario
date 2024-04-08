@@ -2,18 +2,17 @@
 @extends('layouts.app')
  @section('content')
  <div class="d-flex justify-content-end gap-2 p-2">
-  <a href="{{route('admin.words.trash')}}" class="btn btn-info">Vedi Cestino</a>
+  <a href="{{route('admin.words.trash')}}" class="btn btn-secondary">Vedi Cestino</a>
   <a href="{{route('admin.words.create')}}" class="btn btn-success"><i class="fa-solid fa-plus"></i>
   Aggiungi progetto
   </a>
 </div>
- <table class="table">
+ <table class="table table-dark">
   <thead>
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Titolo</th>
       <th scope="col">Descrizione</th>
-      <th scope="col">Slug</th>
       <th scope="col">Links</th>
       <th scope="col">Tag</th>
       <th scope="col">Data creazione</th>
@@ -27,9 +26,8 @@
         <th scope="row">{{$word->id}}</th>
         <td>{{$word->title}}</td>
         <td>{{$word->description}}</td>
-        <td>{{$word->slug}}</td>
         <td>
-          <div class="d-flex flex-column text-center">
+          <div class="d-flex flex-column">
             @forelse ($word->links as $link)
             <a href="{{ $link->url }}">{{ $link->title }}</a>
           @empty
@@ -38,7 +36,7 @@
           </div>
         </td>
         <td>
-          <div class="d-flex flex-column text-center">
+          <div class="d-flex flex-column">
             @forelse ($word->tags as $tag)
             <span class="badge" style="color:{{$tag->color}}">{{$tag->title}}</span>
           @empty

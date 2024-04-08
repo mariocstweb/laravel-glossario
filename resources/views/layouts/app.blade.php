@@ -21,7 +21,7 @@
     @vite(['resources/js/app.js'])
 </head>
 
-<body>
+<body class="bg-warning">
     <div id="app">
         {{-- navbar --}}
     @include('layouts.includes.navbar')
