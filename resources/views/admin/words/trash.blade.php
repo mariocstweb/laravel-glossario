@@ -3,15 +3,14 @@
 
 @section('content')
 <section id="words-trash" class="my-5">
-    <h1 class="mb-5">Parole Eliminati</h1>
+    <h1 class="mb-5">Termini da cancellare:</h1>
     {{--Tabella--}}
-    <table class="table">
+    <table class="table table-dark">
         <thead>
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Titolo</th>
             <th scope="col">Descrizione</th>
-            <th scope="col">Slug</th>
             <th scope="col">Links</th>
             <th scope="col">Data creazione</th>
             <th scope="col">Ultima modifica</th>
@@ -24,9 +23,8 @@
               <th scope="row">{{$word->id}}</th>
               <td>{{$word->title}}</td>
               <td>{{$word->description}}</td>
-              <td>{{$word->slug}}</td>
               <td>
-                <div class="d-flex flex-column text-center">
+                <div class="d-flex flex-column">
                   @forelse ($word->links as $link)
                   <a href="{{ $link->url }}">{{ $link->title }}</a>
                 @empty
@@ -40,7 +38,7 @@
                 <div class="d-flex gap-2 justify-content-end">
                   {{--# SHOW --}}
 
-                  <a href="{{ route('admin.words.show', $word->id)}}" class="btn btn-sm btn-primary">
+                  <a href="{{ route('admin.words.show', $word->id)}}" class="btn btn-primary">
                     <i class="far fa-eye"></i>
                   </a>
       

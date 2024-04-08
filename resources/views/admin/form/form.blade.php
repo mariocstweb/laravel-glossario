@@ -3,7 +3,7 @@
  @section('content')
     
     <h1 class="text-center py-3">
-        @if (Route::is('admin.words.create')) Aggiungi nuovo
+        @if (Route::is('admin.words.create')) Aggiungi nuovo termine
         @else Modifica {{$word->title}} @endif 
     </h1>
 
@@ -24,7 +24,7 @@
     <div class="d-flex ">
         <div class="input-group mb-3 w-50 p-1 d-flex">
             <div class="w-100">
-                <label class="form-label label" for="title">Titolo</label>
+                <label class="form-label label fw-bold" for="title">Titolo:</label>
             </div>
             {{-- FORM - TITOLO --}}
             <input type="text" required id="title" name="title" class="form-control @error('title') is-invalid @elseif(old('title')) is-valid @enderror" 
@@ -44,7 +44,7 @@
         {{-- FORM - SLUG --}}
         <div class="input-group mb-3 w-50 p-1 d-flex">
             <div class="w-100">
-                <label class="form-label label" for="slug">Slug</label>
+                <label class="form-label label fw-bold" for="slug">Slug:</label>
             </div>
             <input type="text" id="slug" name="slug" class="form-control" 
             value="{{$word->slug}}" 
@@ -54,9 +54,8 @@
 
     {{-- FORM - DESCRIPTION --}}
     <div class="input-group mb-3 w-100 p-1">
-        <label class="form-label label" for="description">Descrizione</label>
+        <label class="form-label label fw-bold" for="description">Descrizione:</label>
         <textarea id="description" name="description" id="description" cols="50" rows="3" 
-                placeholder="Inserisci una descrizione..." 
                 class="w-100 @error('description') is-invalid @elseif(old('description')) is-valid @enderror">
                 {{old('description', $word->description)}}
         </textarea>
@@ -64,11 +63,11 @@
 
     {{-- FORM - LINKS --}}
     <div class="input-group mb-3 w-50 p-1 d-flex">
-        <label class="form-label label">Links</label>
+        <label class="form-label label fw-bold">Links:</label>
         <div class="form-group @error('links') is-invalid @enderror">
             @foreach ($links as $link)
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="link_{{$link->id}}" 
+                <input class="form-check-input " type="checkbox" id="link_{{$link->id}}" 
                 name="links[]" value="{{$link->id}}" @if (in_array($link->id, old('links', $prev_links ?? []))) checked @endif>
                 <label class="form-check-label" for="link_{{$link->id}}">{{$link->title}}</label>
             </div>
@@ -83,7 +82,7 @@
 
     {{-- FORM - TAGS --}}
     <div class="input-group mb-3 w-50 p-1 d-flex">
-        <label class="form-label label">Tags</label>
+        <label class="form-label label fw-bold">Tags:</label>
         <div class="form-group @error('tags') is-invalid @enderror">
             @foreach ($tags as $tag)
             <div class="form-check form-check-inline">
