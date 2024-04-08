@@ -13,7 +13,7 @@ class GlossarioController extends Controller
         // Se arriva un filtro entro nell'IF
         if ($request->filter) {
 
-            $words = Word::where('title', 'like', '%' . $request->filter . '%')->with('tags', 'links')->paginate(5);
+            $words = Word::where('title', 'like', '%' . $request->filter . '%')->with('tags', 'links')->paginate(20);
 
             if ($words->isEmpty()) {
                 // Return a response indicating no words found
