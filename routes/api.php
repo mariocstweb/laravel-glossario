@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\GlossarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,5 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('/words', GlossarioController::class);
 
-
+// Rotta per il dettaglio della Word
 Route::get('/words/{slug}', [GlossarioController::class, 'show']);
+
+// Rotta per ricevere un messaggio
+Route::post('/contact-message', [ContactController::class, 'message']);
